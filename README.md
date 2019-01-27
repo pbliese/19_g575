@@ -1,2 +1,3 @@
 # 19_g575
-Spring Geography 575 Students Labs
+This repository includes the lab assignment source code for the University of Wisconsin-Madison Geography 575 (Interactive Cartography & Geovisualization) course.
+
