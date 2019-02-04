@@ -1,70 +1,58 @@
 //javascript
-//St. Louis 308,626 -2
-//Madison 255,214 -1
-//Estes Park 6,339 -4
-//Kirksville 17,536 -3
-//Fort Collins 165080 -5
+//Madison 255214
+//St. Louis 308626
+//Kirksville 17536
+//Estes Park 6339
+//Fort Collins 165080
+
 //initialize function called when the script loads
 function initialize(){
     cities();
 };
 
-//function to create a table with cities and their populations
+//function to create a table with cities and their populations, added city & population
 function cities(){
     //define two arrays for cities and population
-    var cities = [
-        'Madison',
-        'St. Louis',
-        'Kirksville',
-        'Estes Park',
-		'Fort Collins'
+    var cityPop = [
+        { 
+            city: 'Madison',
+            population: 255214
+        },
+        {
+            city: 'St. Louis',
+            population: 308626
+        },
+        {
+            city: 'Kirksville',
+            population: 17536
+        },
+        {
+            city: 'Estes Park',
+            population: 6339
+        },
+	{
+	    city: 'Fort Collins',
+	    population: 165080
+	}
     ];
-    var population = [
-        255214,
-        308626,
-        17536,
-        6339,
-		165080
-    ];
 
-    //create the table element
-    var table = document.createElement("table");
+    //append the table element to the div
+    $("#mydiv").append("<table>");
 
-    //create a header row
-    var headerRow = document.createElement("tr");
+    //append a header row to the table
+    $("table").append("<tr>");
 
-    //add the "City" column
-    var cityHeader = document.createElement("th");
-    cityHeader.innerHTML = "City";
-    headerRow.appendChild(cityHeader);
+    //add the "City" and "Population" columns to the header row
+    $("tr").append("<th>City</th><th>Population</th>");
 
-    //add the "Population" column
-    var popHeader = document.createElement("th");
-    popHeader.innerHTML = "Population";
-    headerRow.appendChild(popHeader);
-
-    //add the row to the table
-    table.appendChild(headerRow);
-
-    //loop to add a new row for each city
-    for (var i = 0; i < cities.length; i++){
-        var tr = document.createElement("tr");
-
-        var city = document.createElement("td");
-        city.innerHTML = cities[i];
-        tr.appendChild(city);
-
-        var pop = document.createElement("td");
-        pop.innerHTML = population[i];
-        tr.appendChild(pop);
-
-        table.appendChild(tr);
+    //loop to add a new row for each city, should account for additional city due to using cityPop.length
+    for (var i = 0; i < cityPop.length; i++){
+        //assign longer html strings to a variable
+        var rowHtml = "<tr><td>" + cityPop[i].city + "</td><td>" + cityPop[i].population + "</td></tr>";
+        //add the row's html string to the table
+        $("table").append(rowHtml);
     };
-
-    //add the table to the div in index.html
-    var mydiv = document.getElementById("mydiv");
-    mydiv.appendChild(table);
 };
 
-//call the initialize function when the window has loaded
-window.onload = initialize();
+//call the initialize function when the document has loaded
+$(document).ready(initialize);
